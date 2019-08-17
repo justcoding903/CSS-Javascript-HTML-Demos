@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Eyeballs - A Custom CSS & JS + HTML demo</title>
+	<script type="text/javascript" src="../script/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="../script/jquery-ui.js"></script>
+</head>
+<body style="background-image: url('avatar.png'); cursor: crosshair; background-position:-140px -260px;" onmousemove="move()">
+<div id="eyeball" style="width: 400px; height: 400px; border-radius: 50%; background-color: white; box-shadow: inset 15px -20px 20px 0px; background-image: url('eyetexture.png'); background-repeat:repeat-x; background-position: 0px 0px;"></div>
+<div id="eyeball2" style="width: 400px;height: 400px;border-radius: 50%;background-color: white;box-shadow: inset -15px -13px 20px 0px;background-image: url('eyetexture.png');background-repeat:repeat-x;background-position: 0px 0px;position: absolute;left: 460px;top: 0px;"></div>
+<div id="mouth" onmouseover="eatsound()" onmouseout="eatsoundstop()" style="cursor:none; width: 400px;height: 400px;border-radius: 50%; background-image: url('mouth.png');background-repeat:repeat-x;background-position: 0px 0px;position: absolute;left: 430px;top: 50px;"></div>
+<script type="text/javascript">
+	alert("Presenting you the draggable I-balls......");
+	var crunch = new Audio("crunch.wav");
+	function eatsound() {
+		document.body.style.cursor = "none";
+		crunch.play();
+	}	
+	function eat7(){		
+		document.getElementById("mouth").style.backgroundImage = "url('mouth1.png')";
+		setTimeout("eatloop()", 200);
+	}
+	function eat6(){
+		document.getElementById("mouth").style.backgroundImage = "url('mouth2.png')";
+		setTimeout("eat7()", 200);
+	}
+	function eat5(){
+		document.getElementById("mouth").style.backgroundImage = "url('mouth3.png')";
+		setTimeout("eat6()", 200);
+	}
+	function eat4(){
+		document.getElementById("mouth").style.backgroundImage = "url('mouth4.png')";
+		setTimeout("eat5()", 200);
+	}
+	function eat3(){
+		document.getElementById("mouth").style.backgroundImage = "url('mouth3.png')";
+		setTimeout("eat4()", 200);
+	}
+	function eat2(){
+		document.getElementById("mouth").style.backgroundImage = "url('mouth2.png')";
+		setTimeout("eat3()", 200);
+	}
+	function eat1(){
+		document.getElementById("mouth").style.backgroundImage = "url('mouth1.png')";
+		setTimeout("eat2()", 200);
+	}
+	function eatloop(){
+		setTimeout("eat1()", 300);
+	}
+	function eat(){
+		setTimeout("eat1()", 15000);
+	}
+	function blink7(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink1.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink1.png')";
+		setTimeout("normal()", 100);
+	}
+	function blink6(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink2.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink2.png')";
+		setTimeout("blink7()", 100);
+	}
+	function blink5(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink3.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink3.png')";
+		setTimeout("blink6()", 100);
+	}
+	function blink4(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink4.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink4.png')";
+		setTimeout("blink5()", 100);
+	}
+	function blink3(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink3.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink3.png')";
+		setTimeout("blink4()", 100);		
+	}
+	function blink2(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink2.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink2.png')";
+		setTimeout("blink3()", 100);
+	}
+	function blink1(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture_blink1.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture_blink1.png')";
+		setTimeout("blink2()", 100);		
+	}
+	function normal(){
+		document.getElementById("eyeball").style.backgroundImage = "url('eyetexture.png')";
+		document.getElementById("eyeball2").style.backgroundImage = "url('eyetexture.png')";
+		setTimeout("blink1()", 3000);
+	}
+	function move() {
+		var evt = window.event;
+		var posX = evt.clientX -= 50;
+		var posY = evt.clientY -= 50;
+		document.getElementById("eyeball").style.backgroundPosition = posX + "px 0px";		
+		document.getElementById("eyeball2").style.backgroundPosition = posX + "px 0px";		
+	}
+	$("#eyeball").draggable();
+	$("#eyeball2").draggable();
+	$("#mouth").draggable();
+	normal();
+	eat();
+</script>
+</body>
+</html>
